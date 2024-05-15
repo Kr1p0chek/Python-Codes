@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Форма Регистрации</title>
+</head>
+<body>
+
+<form action="{% url 'administrator:dobavlenie' %}" enctype="multipart/form-data" method="post"> 
+{% csrf_token %}
+<label for="name">Имя:</label><br>
+  <input type="text" id="name" name="name" required><br>
+
+  <label for="positionj">Должность:</label><br>
+  <select id="positionj" name="positionj" required>
+    <option value="manager">Менеджер</option>
+    <option value="administrator">Администратор</option>
+  </select><br>
+
+
+  <label for="login">Логин:</label><br>
+  <input type="text" id="login" name="login" required><br>
+
+  <label for="password">Пароль:</label><br>
+  <input type="password" id="password" name="password" required><br>
+
+  <label for="email_telephone">Почта:</label><br>
+  <input type="email" id="email_telephone" name="email_telephone" required><br>
+
+  <input type="submit" value="Сохранить">
+</form>
+
+</body>
+</html> 

@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страничка с полями для ввода</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Начало формы -->
+        <form method="post" action="{% url 'user:application' %}" enctype="multipart/form-data"> <!-- Укажите здесь URL, который обрабатывает вашу форму -->
+            {% csrf_token %} <!-- Защита от CSRF-атак -->
+            <div class="zayavka">
+                <h1>Новая заявка</h1>
+                <div class="container">
+                    <div class="zayavka__content">
+                        <div class="zayavka__wrapper">
+                            <div class="left-column">
+                                <!-- Поля для текста заявки и предполагаемого решения -->
+                                <p class="zayavka__title">Текст заявки</p>
+                                <textarea name="application_text" class="zayavka__input" placeholder="Введите текст..."></textarea>
+                                <p class="zayavka__title">Предполагаемое решение</p>
+                                <textarea name="prop_solution" class="zayavka__input" placeholder="Введите текст..."></textarea>
+                                <!-- Поле для прикрепления файла -->
+                                <div class="attach">
+                                    <input type="file" name="photo" class="attach__input">
+                                    <p class="attach__text">Прикрепить фото</p>
+                                </div>
+                            </div>
+                            <div class="right-column">
+                                <!-- Поля для контактных данных -->
+                                <p class="zayavka__title">Контактные данные</p>
+                                <p class="zayavka__title zayavka__subtitle">ФИО пользователя</p>
+                                <input name="name" class="zayavka__input" type="text" placeholder="Введите текст...">
+                                <p class="zayavka__title">Электронная почта</p>
+                                <input name="email" class="zayavka__input" type="email" placeholder="Введите текст...">
+                                <!-- Кнопка отправки формы -->
+                                <button type="submit" class="zayavka__button">Отправить</button>
+                            </div>
+                        </div>
+                        <div class="zayavka__bottom">
+                            <button class="zayavka__button" onclick="location.href='user.html';">
+                                <img src="{% static 'img/arrow_back.svg' %}" alt="">
+                            </button>
+                            <p class="policy">
+                                Платформа обеспечивает анонимность, но при желании, Вы можете оставить свои контакты.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form> <!-- Конец формы -->
+    </div>
+</body>
+</html>
+
+{% comment %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страничка с полями для ввода</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<!-- Форма для текстовых данных -->
+<form id="application-form" method="post">
+    {% csrf_token %}
+    <label for="name">ФИО:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="application_text">Текст заявки:</label>
+    <textarea id="application_text" name="application_text" required></textarea>
+
+    <label for="prop_solution">Предложенное решение:</label>
+    <textarea id="prop_solution" name="prop_solution" required></textarea>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="submit" class="submit-application">Отправить заявку</button>
+</form>
+
+<!-- Форма для файлов -->
+<form id="files-form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file">Выберите файл:</label>
+    <input type="file" id="file" name="file" required>
+
+    <button type="submit" class="submit-file">Загрузить файл</button>
+</form>
+
+<script>
+// Здесь будет ваш JavaScript код для обработки форм
+</script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Обработка отправки формы заявки
+    document.getElementById('application-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        fetch('{% url 'user:application' %}', {
+            method: 'POST',
+            body: formData,
+            // Добавьте необходимые заголовки, если нужно
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Обработайте ответ сервера
+        })
+        .catch((error) => {
+            console.error('Ошибка:', error);
+        });
+    });
+
+    // Обработка отправки формы файла
+    document.getElementById('files-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        fetch('{% url "user:application" %}', {
+            method: 'POST',
+            body: formData,
+            // Добавьте необходимые заголовки, если нужно
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Обработайте ответ сервера
+        })
+        .catch((error) => {
+            console.error('Ошибка:', error);
+        });
+    });
+  });
+</body>
+</html> {% endcomment %}

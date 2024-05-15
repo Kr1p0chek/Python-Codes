@@ -1,0 +1,114 @@
+{% comment %} <!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Жалобы</title>
+<style>
+    .truncate {
+        width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+    <h2>Жалобы</h2>
+    <table>
+        <tr>
+			<th>Номер заявки</th>
+            <th>Имя</th>
+			<th>Статус</th>
+			<th>Время регистрации</th>
+            <th>Email</th>
+            <th>Текст заявки</th>
+            <th>Предполагаемое решение</th>
+			<th>Ответ менеджера</th>
+        </tr>
+        {% for application in applications %}
+        <tr>
+			<td>{{ application.application_num}}</td>
+            <td>{% if application.name == "anonim" %}Аноним{% else%}{{ application.name|default:"Аноним" }}{% endif %}</td>
+			<td>{% if application.status == "open" %}Открыто{% elif application.status == "closed" %}Закрыто{% elif application.status == "answered" %}Отвечено{% elif application.status == "in order" %}В обработке{% else%}{{ application.status|default:"Открыто" }}{% endif %}</td>
+			<td>{{ application.datetime|date:"d.m.Y H:i" }}</td>
+            <td>{{ application.email|default_if_none:"" }}</td>
+            <td class="truncate" title="{{ application.application_text }}">{{ application.application_text|slice:":30" }}</td>
+            <td class="truncate" title="{{ application.prop_solution }}">{{ application.prop_solution|slice:":30" }}</td>
+			<td class="truncate" title="{{ application.answer|default_if_none:'' }}">{{ application.answer|default_if_none:''|slice:":30" }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Жалоб</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+    <h2>Список Жалоб</h2>
+    <table id="complaintsTable">
+        <thead>
+            <tr>
+                <th>Номер заявки</th>
+				<th>Имя</th>
+				<th>Статус</th>
+				<th>Время регистрации</th>
+				<th>Email</th>
+				<th>Текст заявки</th>
+				<th>Предполагаемое решение</th>
+				<th>Ответ менеджера</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+            <tr>
+                <td>{{ application.application_num}}</td>
+				<td>{% if application.name == "anonim" %}Аноним{% else%}{{ application.name|default:"Аноним" }}{% endif %}</td>
+				<td>{% if application.status == "open" %}Открыто{% elif application.status == "closed" %}Закрыто{% elif application.status == "answered" %}Отвечено{% elif application.status == "in order" %}В обработке{% else%}{{ application.status|default:"Открыто" }}{% endif %}</td>
+				<td>{{ application.datetime|date:"d.m.Y H:i" }}</td>
+				<td>{{ application.email|default_if_none:"" }}</td>
+				<td class="truncate" title="{{ application.application_text }}">{{ application.application_text|slice:":30" }}</td>
+				<td class="truncate" title="{{ application.prop_solution }}">{{ application.prop_solution|slice:":30" }}</td>
+				<td class="truncate" title="{{ application.answer|default_if_none:'' }}">{{ application.answer|default_if_none:''|slice:":30" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <span class="step-links">
+            {% if applications.has_previous %}
+                <a href="?page=1">&laquo; первая</a>
+                <a href="?page={{ applications.previous_page_number }}">предыдущая</a>
+            {% endif %}
+            
+            <span class="current">
+                Страница {{ applications.number }} из {{ applications.paginator.num_pages }}.
+            </span>
+            
+            {% if applications.has_next %}
+                <a href="?page={{ applications.next_page_number }}">следующая</a>
+                <a href="?page={{ applications.paginator.num_pages }}">последняя &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

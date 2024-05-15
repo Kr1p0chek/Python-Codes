@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+@font-face {
+  font-family: "prosto";
+  src: url("postnobillscolombo-bold.ttf") format("ttf");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  background: none;
+  stroke: none;
+  border: none;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+
+  font-weight: normal;
+  font-style: normal;
+  background: linear-gradient(#6d87ff 0%, #576088 100%);
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.rounded-button {
+  max-width: 300px;
+  width: 100%;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.button-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-strelo4ka {
+  position: relative;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.first-screen {
+  height: 100vh;
+}
+
+.bottom-left-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px 20px;
+  /* Пример внутреннего отступа */
+  background-color: #007bff;
+  /* Пример цвета кнопки */
+  color: white;
+  /* Пример цвета текста кнопки */
+  border: none;
+  /* Убираем стандартную границу кнопки */
+  cursor: pointer;
+  /* Изменяем курсор при наведении на кнопку */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.left-column,
+.right-column {
+  /* 
+  width: 45%; */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  /* Чтобы оставить небольшой промежуток между столбцами, можно использовать значение меньше 50% */
+}
+
+.left-column {
+  flex: 0 1 55%;
+}
+
+.right-column {
+  flex: 0 1 30%;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.bottom-right-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px 20px;
+  /* Пример внутреннего отступа */
+  background-color: #007bff;
+  /* Пример цвета кнопки */
+  color: white;
+  /* Пример цвета текста кнопки */
+  border: none;
+  /* Убираем стандартную границу кнопки */
+  cursor: pointer;
+  /* Изменяем курсор при наведении на кнопку */
+}
+
+.zayavka {
+  height: 100vh;
+}
+
+.zayavka__content {
+  width: 100%;
+  background: #fff;
+  padding: 35px 50px 35px 20px;
+  border-radius: 30px;
+}
+
+.zayavka__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.zayavka__title {
+  font-size: 35px;
+  padding: 0;
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+}
+
+.zayavka__subtitle {
+  font-size: 30px;
+}
+
+.zayavka__input {
+  padding: 25px 30px;
+  font-size: 24px;
+  background: #eee;
+  border: 1px solid #a7a6a6;
+  border-radius: 15px;
+  padding: 5px 10px;
+}
+
+.zayavka__input::placeholder {
+  color: #acacac;
+  font-size: 35px;
+}
+
+.zayavka__content input {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zayavka__content textarea {
+  height: 150px;
+}
+
+.zayavka__button {
+  font-size: 50px;
+  color: #000;
+  padding: 5px 45px;
+  cursor: pointer;
+  background-color: #6d87ff;
+  border-radius: 20px;
+  text-transform: none;
+}
+
+.attach {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.attach__img {
+  max-width: 40px;
+}
+
+.attach__text {
+  font-size: 25px;
+}
+
+.policy {
+  font-size: 25px;
+  text-align: center;
+}
+
+.zayavka__bottom {
+  display: flex;
+  align-items: flex-end;
+  gap: 30px;
+}
+
+.zayavka__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

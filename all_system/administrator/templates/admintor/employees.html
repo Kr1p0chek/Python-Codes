@@ -1,0 +1,79 @@
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href= {% static "css/styles.css" %} />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="first-screen">
+        <h1>Таблица с информацией о менеджерах и других администраторах</h1>
+        <button
+          class="bottom-left-button"
+          onclick="location.href='index.html';"
+        >
+          Стрелочка
+        </button>
+      </div>
+    </div>
+  </body>
+</html> {% endcomment %}
+
+{% load static %}
+<!DOCTYPE html>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Управление Пользователями</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+    <div class="wrapper">
+        <div class="first-screen">
+            <h1>Таблица с информацией о менеджерах и других администраторах</h1>
+            <table id="managersTable">
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Должность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employe in employes %}
+                    <tr>
+                        <td>{{ employe.name }}</td>
+                        <td>{{ employe.positionj|yesno:"Администратор,Менеджер" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if employes.has_previous %}
+                        <a href="?page=1">&laquo; первая</a>
+                        <a href="?page={{ employes.previous_page_number }}">предыдущая</a>
+                    {% endif %}
+                    
+                    <span class="current">
+                        Страница {{ employes.number }} из {{ employes.paginator.num_pages }}.
+                    </span>
+                    
+                    {% if employes.has_next %}
+                        <a href="?page={{ employes.next_page_number }}">следующая</a>
+                        <a href="?page={{ employes.paginator.num_pages }}">последняя &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            <button onclick="location.href='{% url 'administrator:dobavlenie' %}';">Добавить пользователя</button>
+            <button class="bottom-left-button" onclick="location.href='{% url 'user:index' %}';">Стрелочка</button>
+        </div>
+    </div>
+</body>
+</html>

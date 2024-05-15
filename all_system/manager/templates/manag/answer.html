@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Страничка с полями для ввода</title>
+    <link rel="stylesheet" href= {% static "css/styles.css" %} />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="zayavka">
+        <h1>Новая заявка</h1>
+        <div class="container">
+          <div class="zayavka__content">
+            <div class="zayavka__wrapper">
+              <div class="left-column">
+                <p class="zayavka__title">Номер заявки</p>
+                <textarea readonly name="" id="" class="zayavka__input" placeholder=""></textarea>
+                <p class="zayavka__title">текст отправленной заявки</p>
+                <textarea readonly name="" id="" class="zayavka__input" placeholder=""></textarea>
+                <p class="zayavka__title">предполагаемое решение</p>
+                <textarea readonly name="" id="" class="zayavka__input" placeholder=""></textarea>
+              </div>
+              <div class="right-column-prosmotr">
+                <p class="zayavka__title">Ответ менеджера на заявку</p>
+                <input class="zayavka__input" type="text" placeholder=""/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="zayavka__bottom">
+        <button class="zayavka__button_strelo4ka" onclick="location.href='applicant.html';">
+          <img src="img/arrow_back.svg" alt="" />
+        </button>
+        <p class="policy"></p>
+      </div>
+  </body>
+</html>
